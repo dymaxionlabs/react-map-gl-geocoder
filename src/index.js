@@ -85,7 +85,7 @@ class Geocoder extends Component {
     this.geocoder.on('result', this.handleResult)
     this.geocoder.on('error', this.handleError)
 
-    mapRef.current.getMap().addControl(this.geocoder)
+    mapRef.current.getMap().addControl(this.geocoder, 'top-left')
 
     onInit(this.geocoder)
   }
