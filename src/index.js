@@ -59,7 +59,8 @@ class Geocoder extends Component {
       filter,
       localGeocoder,
       options,
-      onInit
+      onInit,
+      position,
     } = this.props
 
     this.geocoder = new MapboxGeocoder({
@@ -85,7 +86,7 @@ class Geocoder extends Component {
     this.geocoder.on('result', this.handleResult)
     this.geocoder.on('error', this.handleError)
 
-    mapRef.current.getMap().addControl(this.geocoder, 'top-left')
+    mapRef.current.getMap().addControl(this.geocoder, position)
 
     onInit(this.geocoder)
   }
@@ -185,7 +186,8 @@ class Geocoder extends Component {
     onResults: PropTypes.func,
     onResult: PropTypes.func,
     onError: PropTypes.func,
-    options: PropTypes.object // deprecated and will be removed in v2
+    options: PropTypes.object, // deprecated and will be removed in v2
+    position: PropTypes.string
   }
 
   static defaultProps = {
@@ -196,12 +198,12 @@ class Geocoder extends Component {
     trackProximity: false,
     minLength: 2,
     limit: 5,
-    onInit: () => {},
-    onClear: () => {},
-    onLoading: () => {},
-    onResults: () => {},
-    onResult: () => {},
-    onError: () => {}
+    onInit: () => { },
+    onClear: () => { },
+    onLoading: () => { },
+    onResults: () => { },
+    onResult: () => { },
+    onError: () => { }
   }
 }
 
